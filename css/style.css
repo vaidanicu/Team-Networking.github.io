@@ -1,0 +1,55 @@
+html {
+  margin: 0;
+  padding: 0;
+  max-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background-image: url(/photo/pattern.png);
+}
+
+#header-wraper {
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: row;
+  background-size: cover;
+  background-position: center;
+  border-radius: 3px;
+
+  background-image: url(/photo/connecting-people-social-network-concept-bright-vector-25753015.jpg);
+}
+
+#my-pictures img {
+  height: 100px;
+  border: 2px solid black;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+#header-info h1 {
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+#header-info p {
+  font-size: 15px;
+  margin-top: 20px;
+}
+table {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 500px;
+  border-collapse: collapse;
+}
+
+#teams th {
+  background-color: rgb(0, 64, 255);
+  border: 1px solid;
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: underline;
+}
