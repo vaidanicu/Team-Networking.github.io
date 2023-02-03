@@ -7,7 +7,7 @@ html {
 body {
   min-height: 100%;
   margin: 0;
-  background-image: url(/photo/pattern.png);
+  background-image: url(photo/pattern.png);
 }
 
 #header-wraper {
@@ -18,7 +18,7 @@ body {
   background-position: center;
   border-radius: 3px;
 
-  background-image: url(/photo/connecting-people-social-network-concept-bright-vector-25753015.jpg);
+  background-image: url(photo/connecting-people-social-network-concept-bright-vector-25753015.jpg);
 }
 
 #my-pictures img {
