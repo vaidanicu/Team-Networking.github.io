@@ -7,7 +7,7 @@ html {
 body {
   min-height: 100%;
   margin: 0;
-  background-image: url(/pattern.png);
+  background-color: beige;
 }
 
 #header-wraper {
@@ -17,8 +17,7 @@ body {
   background-size: cover;
   background-position: center;
   border-radius: 3px;
-
-  background-image: url(/connecting-people-social-network-concept-bright-vector-25753015.jpg);
+  background-color: rgb(2, 2, 98);
 }
 
 #my-pictures img {
@@ -46,7 +45,7 @@ table {
 }
 
 #teams th {
-  background-color: rgb(0, 64, 255);
+  background-color: rgba(0, 60, 241, 0.567);
   border: 1px solid;
   margin: 0;
   padding: 0;
