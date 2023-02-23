@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/vaidanicu/Team-Networking.github.io/issues"
   },
-  "homepage": "https://github.com/vaidanicu/Team-Networking.github.io#readme"
+  "homepage": "https://github.com/vaidanicu/Team-Networking.github.io#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
 }
