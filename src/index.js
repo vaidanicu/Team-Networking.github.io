@@ -65,7 +65,7 @@ function initEvents() {
   const form = document.getElementById("editForm");
   form.addEventListener("submit", onSubmit);
   console.warn("what??", document.querySelector("td a"));
-  document.querySelector("td a").addEventListener("click", () => {
+  document.querySelector("td, a").addEventListener("click", () => {
     console.log("sss");
   });
 }
