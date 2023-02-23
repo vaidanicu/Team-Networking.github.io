@@ -17,7 +17,10 @@ function displayTeams(teams) {
             <td>${team.members}</td>
             <td>${team.name}</td>
             <td>${team.url}</td>
-            <td></td>
+            <td>
+              <a href ="# class="delete-btn">✖️</a>
+            </td>
+            <td>✏️</td>
         </tr>`
   );
   document.querySelector("#teams tbody").innerHTML = teamsHTML.join("");
@@ -48,9 +51,23 @@ function onSubmit(e) {
     });
 }
 
+function removeTeamRequest(id) {
+  fetch("http://localhost:3000/teams-json/delete", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id }),
+  });
+}
+
 function initEvents() {
   const form = document.getElementById("editForm");
   form.addEventListener("submit", onSubmit);
+  console.warn("what??", document.querySelector("td a"));
+  document.querySelector("td a").addEventListener("click", () => {
+    console.log("sss");
+  });
 }
 
 initEvents();
