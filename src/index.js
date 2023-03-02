@@ -9,6 +9,16 @@ fetch("http://localhost:3000/teams-json", {
     displayTeams(teams);
   });
 
+function deleteTeamRequest(id) {
+  return fetch("http://localhost:3000/teams-json/delete", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ id })
+  });
+}
+
 function displayTeams(teams) {
   const teamsHTML = teams.map(
     team => `
@@ -18,7 +28,7 @@ function displayTeams(teams) {
             <td>${team.name}</td>
             <td>${team.url}</td>
             <td>
-              <a data-id="${team.id}">✖️</a>
+              <a href=#  class= "delete-btn" data-id= "${team.id}">✖️</a>
             </td>
             
         </tr>`
@@ -51,16 +61,6 @@ function onSubmit(e) {
     });
 }
 
-function removeTeamRequest(id) {
-  fetch("http://localhost:3000/teams-json/delete", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ id })
-  });
-}
-
 function initEvents() {
   const form = document.getElementById("editForm");
   form.addEventListener("submit", onSubmit);
@@ -68,7 +68,14 @@ function initEvents() {
   document.querySelector("#teams tbody").addEventListener("click", e => {
     if (e.target.matches("a")) {
       const id = e.target.dataset.id;
-      console.warn("delete", id);
+      const p = deleteTeamRequest(id);
+      console.warn("p", p);
+      p.then(r => r.json()).then(status => {
+        console.info("s", status);
+        if (status.success) {
+          window.location.reload();
+        }
+      });
     }
   });
 }
