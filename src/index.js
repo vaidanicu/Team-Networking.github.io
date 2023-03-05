@@ -102,3 +102,8 @@ function initEvents() {
 }
 
 initEvents();
+for (var i = 0; i < 5; i++) {
+  setTimeout(() => {
+    console.info(i);
+  }, 100);
+}
