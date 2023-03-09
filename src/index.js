@@ -54,10 +54,10 @@ function readTeam() {
     url: document.getElementById("url").value
   };
 }
-
-function displayTeams(teams) {
-  const teamsHTML = teams.map(
-    team => `
+function getTeamsHtml(teams) {
+  return teams
+    .map(
+      team => `
         <tr>
             <td>${team.promotion}</td>
             <td>${team.members}</td>
@@ -69,8 +69,12 @@ function displayTeams(teams) {
             </td>
             
         </tr>`
-  );
-  document.querySelector("#teams tbody").innerHTML = teamsHTML.join("");
+    )
+    .join("");
+}
+
+function displayTeams(teams) {
+  document.querySelector("#teams tbody").innerHTML = getTeamsHtml(teams);
 }
 
 function onSubmit(e) {
