@@ -1,18 +1,14 @@
 let allTeams = [];
 let editId;
 
-fetch("http://localhost:3000/teams-json", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json"
-  }
-})
-  .then(r => r.json())
-  .then(teams => {
-    allTeams = teams;
-    console.info(teams);
-    displayTeams(teams);
-  });
+function loadTeamsRequest() {
+  return fetch("http://localhost:3000/teams-json", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(r => r.json());
+}
 
 function createTeamRequest(team) {
   // const team = readTeam();
@@ -85,6 +81,13 @@ function getTeamsHtml(teams) {
 function displayTeams(teams) {
   document.querySelector("#teams tbody").innerHTML = getTeamsHtml(teams);
 }
+function loadTeams() {
+  loadTeamsRequest().then(teams => {
+    allTeams = teams;
+    console.info(teams);
+    displayTeams(teams);
+  });
+}
 
 function onSubmit(e) {
   e.preventDefault();
@@ -96,7 +99,11 @@ function onSubmit(e) {
     console.warn("update", editId);
     updateTeamRequest(team).then(status => {
       if (status.success) {
-        window.location.reload();
+        // load new teams...
+        loadTeams();
+        //TODO don't load treams
+        // displayTeams(allTeams);
+        e.target.reset();
       }
     });
   } else {
@@ -153,5 +160,5 @@ function initEvents() {
     }
   });
 }
-
+loadTeams();
 initEvents();
