@@ -105,13 +105,17 @@ function onSubmit(e) {
 
       if (status.success) {
         // window.location.reload();
+
+        //1.0 adaug id in team
+        team.id = status.id;
+
         // 1. adaugam datele in tabel..
         //1.1 adaug in allTeams
         allTeams.push(team);
         // allTeams = [...allTeams, team];
         //1.2 apelam displayTeams(allTeams)
         displayTeams(allTeams);
-        // 2. clear datele din inputuri
+        // 2. sterge datele din inputuri
         // varianta 1
         // writeTeam({promotion: "",name: "",url: "",members: ""});
         //  varianta 2
