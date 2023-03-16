@@ -151,7 +151,7 @@ function initEvents() {
 
       deleteTeamRequest(id).then(status => {
         if (status.success) {
-          window.location.reload();
+          loadTeams();
         }
       });
     } else if (e.target.matches("a.edit-btn")) {
