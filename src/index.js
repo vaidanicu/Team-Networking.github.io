@@ -54,6 +54,13 @@ function readTeam() {
     url: document.getElementById("url").value
   };
 }
+
+function writeTeam(team) {
+  document.getElementById("promotion").value = team.promotion;
+  document.getElementById("members").value = team.members;
+  document.getElementById("name").value = team.name;
+  document.getElementById("url").value = team.url;
+}
 function getTeamsHtml(teams) {
   return teams
     .map(
@@ -97,7 +104,18 @@ function onSubmit(e) {
       console.warn("status", status.success, status.id);
 
       if (status.success) {
-        window.location.reload();
+        // window.location.reload();
+        // 1. adaugam datele in tabel..
+        //1.1 adaug in allTeams
+        allTeams.push(team);
+        // allTeams = [...allTeams, team];
+        //1.2 apelam displayTeams(allTeams)
+        displayTeams(allTeams);
+        // 2. clear datele din inputuri
+        // varianta 1
+        // writeTeam({promotion: "",name: "",url: "",members: ""});
+        //  varianta 2
+        e.target.reset();
       }
     });
   }
@@ -107,13 +125,9 @@ function onSubmit(e) {
 
 function prepareEdit(id) {
   const team = allTeams.find(team => team.id === id);
-
   editId = id;
 
-  document.getElementById("promotion").value = team.promotion;
-  document.getElementById("members").value = team.members;
-  document.getElementById("name").value = team.name;
-  document.getElementById("url").value = team.url;
+  writeTeam(team);
 }
 
 function initEvents() {

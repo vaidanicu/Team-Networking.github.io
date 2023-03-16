@@ -40,7 +40,7 @@ table {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 500px;
+
   border-collapse: collapse;
 }
 
@@ -51,4 +51,12 @@ table {
   padding: 0;
   border: none;
   text-decoration: underline;
+}
+
+#teams tfoot input[type="text" i] {
+  width: 100%;
+}
+
+#teams tfoot input:not([type="image" i]) {
+  box-sizing: border-box;
 }
