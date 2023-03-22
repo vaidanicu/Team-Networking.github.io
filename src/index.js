@@ -69,7 +69,7 @@ function getTeamsHtml(teams) {
             <a href="${team.url}" target="_blank">${team.url.replace("https://github.com", "")}</a>
             </td>
             <td>
-              <a data-id= "${team.id}" class ="removeBtn">❌</a>
+              <a data-id= "${team.id}" class ="removeBtn">&#10006</a>
               <a data-id="${team.id}" class = "edit-btn">&#9998</a>
             </td>
             

@@ -7,7 +7,7 @@ html {
 body {
   min-height: 100%;
   margin: 0;
-  background-color: beige;
+  background-color: #e9f6f8;
 }
 
 #header-wraper {
@@ -17,13 +17,13 @@ body {
   background-size: cover;
   background-position: center;
   border-radius: 3px;
-  background-color: rgb(2, 2, 98);
+  background: linear-gradient(45deg, #0798abfa, transparent);
 }
 
 #my-pictures img {
   height: 100px;
   border: 2px solid black;
-  border-radius: 50%;
+  border-radius: 60%;
   margin: 10px;
 }
 
@@ -40,12 +40,11 @@ table {
   margin: 0;
   padding: 0;
   width: 100%;
-
   border-collapse: collapse;
 }
 
 #teams th {
-  background-color: rgba(0, 60, 241, 0.567);
+  background-color: #00aeef;
   border: 1px solid;
   margin: 0;
   padding: 0;
@@ -59,4 +58,19 @@ table {
 
 #teams tfoot input:not([type="image" i]) {
   box-sizing: border-box;
+}
+
+a.removeBtn {
+  color: #00aeef;
+}
+
+a.removeBtn:hover {
+  color: red;
+}
+
+a.edit-btn {
+  color: #00aeef;
+}
+a.edit-btn:hover {
+  color: rgb(0, 255, 34);
 }
