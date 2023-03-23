@@ -51,7 +51,8 @@ function readTeam() {
   };
 }
 
-function writeTeam(team) {
+function writeTeam({ promotion, members, name, url }) {
+  // const { promotion, members, name, url } = team; //Destructuring
   document.getElementById("promotion").value = team.promotion;
   document.getElementById("members").value = team.members;
   document.getElementById("name").value = team.name;
@@ -116,7 +117,7 @@ function onSubmit(e) {
             console.warn("t", t, team);
             return {
               ...t,
-              ...team
+              team
             };
           }
           return t;
