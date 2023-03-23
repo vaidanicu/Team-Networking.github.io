@@ -78,8 +78,17 @@ function getTeamsHtml(teams) {
     .join("");
 }
 
+let oldDisplayTeams;
+
 function displayTeams(teams) {
+  if (oldDisplayTeams === teams) {
+    console.warn("save teams to display");
+    return;
+  }
+  oldDisplayTeams = teams;
+  // console.time("display");
   document.querySelector("#teams tbody").innerHTML = getTeamsHtml(teams);
+  // console.timeEnd("display");
 }
 function loadTeams() {
   loadTeamsRequest().then(teams => {
@@ -96,12 +105,19 @@ function onSubmit(e) {
 
   if (editId) {
     team.id = editId;
-    console.warn("update", editId);
+
     updateTeamRequest(team).then(status => {
       if (status.success) {
         // load new teams...
-        loadTeams();
-        //TODO don't load treams
+        //loadTeams();
+        allTeams = [...allTeams];
+        const editedTeam = allTeams.find(team => team.id === editId);
+        console.warn("editedTeam", editedTeam, team);
+        editedTeam.promotion = team.promotion;
+        editedTeam.members = team.members;
+        editedTeam.name = team.name;
+        editedTeam.url = team.url;
+        displayTeams(allTeams);
         // displayTeams(allTeams);
         e.target.reset();
       }
@@ -118,8 +134,8 @@ function onSubmit(e) {
 
         // 1. adaugam datele in tabel..
         //1.1 adaug in allTeams
-        allTeams.push(team);
-        // allTeams = [...allTeams, team];
+        // allTeams.push(team);
+        allTeams = [...allTeams, team]; // Spread syntax
         //1.2 apelam displayTeams(allTeams)
         displayTeams(allTeams);
         // 2. sterge datele din inputuri
