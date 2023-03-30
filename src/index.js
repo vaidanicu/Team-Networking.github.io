@@ -172,16 +172,15 @@ function initEvents() {
   form.addEventListener("reset", () => {
     editId = undefined;
   });
-  document.querySelector("#teams tbody").addEventListener("click", e => {
+  document.querySelector("#teams tbody").addEventListener("click", async e => {
     if (e.target.matches("a.removeBtn")) {
       const id = e.target.dataset.id;
 
-      deleteTeamRequest(id).then(status => {
-        if (status.success) {
-          loadTeams();
-          //TODO  implementam alta versiune de 'remove' fara loadTeams
-        }
-      });
+      const status = await deleteTeamRequest(id);
+      if (status.success) {
+        loadTeams();
+        // TODO homework: don't load all teams...
+      }
     } else if (e.target.matches("a.edit-btn")) {
       const id = e.target.dataset.id;
       prepareEdit(id);
