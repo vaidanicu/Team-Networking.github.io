@@ -1,3 +1,6 @@
+import { sleep } from "./utilities";
+// const utilities = require('./utilities');
+
 let allTeams = [];
 let editId;
 
@@ -176,6 +179,7 @@ function initEvents() {
       deleteTeamRequest(id).then(status => {
         if (status.success) {
           loadTeams();
+          //TODO  implementam alta versiune de 'remove' fara loadTeams
         }
       });
     } else if (e.target.matches("a.edit-btn")) {
@@ -186,3 +190,13 @@ function initEvents() {
 }
 loadTeams();
 initEvents();
+// TODO move in external file
+console.info("sleep");
+sleep(1000).then(r => {
+  console.info("done1", r);
+});
+console.warn("after sleep")(async () => {
+  console.info("start");
+  var r2 = await sleep(5000);
+  console.warn("done2", r2);
+})();
