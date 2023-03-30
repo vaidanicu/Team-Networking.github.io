@@ -1,49 +1,9 @@
+import { loadTeamsRequest, createTeamRequest, deleteTeamRequest, updateTeamRequest } from "./request";
 import { sleep } from "./utilities";
 // const utilities = require('./utilities');
 
 let allTeams = [];
 let editId;
-
-function loadTeamsRequest() {
-  return fetch("http://localhost:3000/teams-json", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(r => r.json());
-}
-
-function createTeamRequest(team) {
-  // const team = readTeam();
-  return fetch("http://localhost:3000/teams-json/create", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(team)
-  }).then(r => r.json());
-}
-
-function updateTeamRequest(team) {
-  // const team = readTeam();
-  return fetch("http://localhost:3000/teams-json/update", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(team)
-  }).then(r => r.json());
-}
-
-function deleteTeamRequest(id) {
-  return fetch("http://localhost:3000/teams-json/delete", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ id })
-  }).then(r => r.json());
-}
 
 function readTeam() {
   return {
@@ -194,7 +154,9 @@ console.info("sleep");
 sleep(1000).then(r => {
   console.info("done1", r);
 });
-console.warn("after sleep")(async () => {
+console.warn("after sleep");
+
+(async () => {
   console.info("start");
   var r2 = await sleep(5000);
   console.warn("done2", r2);
