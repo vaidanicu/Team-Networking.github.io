@@ -62,7 +62,7 @@ function loadTeams() {
   });
 }
 
-function onSubmit(e) {
+async function onSubmit(e) {
   e.preventDefault();
 
   const team = readTeam();
@@ -70,50 +70,48 @@ function onSubmit(e) {
   if (editId) {
     team.id = editId;
 
-    updateTeamRequest(team).then(status => {
-      if (status.success) {
-        // load new teams...
-        //loadTeams();
+    const status = await updateTeamRequest(team);
+    if (status.success) {
+      // load new teams...
+      //loadTeams();
 
-        allTeams = allTeams.map(t => {
-          if (t.id === team.id) {
-            console.warn("t", t, team);
-            return {
-              ...t,
-              team
-            };
-          }
-          return t;
-        });
+      allTeams = allTeams.map(t => {
+        if (t.id === team.id) {
+          console.warn("t", t, team);
+          return {
+            ...t,
+            team
+          };
+        }
+        return t;
+      });
 
-        displayTeams(allTeams);
-        // displayTeams(allTeams);
-        e.target.reset();
-      }
-    });
+      displayTeams(allTeams);
+      // displayTeams(allTeams);
+      e.target.reset();
+    }
   } else {
-    createTeamRequest(team).then(status => {
-      console.warn("status", status.success, status.id);
+    const status = await createTeamRequest(team);
+    console.warn("status", status.success, status.id);
 
-      if (status.success) {
-        // window.location.reload();
+    if (status.success) {
+      // window.location.reload();
 
-        //1.0 adaug id in team
-        team.id = status.id;
+      //1.0 adaug id in team
+      team.id = status.id;
 
-        // 1. adaugam datele in tabel..
-        //1.1 adaug in allTeams
-        // allTeams.push(team);
-        allTeams = [...allTeams, team]; // Spread syntax
-        //1.2 apelam displayTeams(allTeams)
-        displayTeams(allTeams);
-        // 2. sterge datele din inputuri
-        // varianta 1
-        // writeTeam({promotion: "",name: "",url: "",members: ""});
-        //  varianta 2
-        e.target.reset();
-      }
-    });
+      // 1. adaugam datele in tabel..
+      //1.1 adaug in allTeams
+      // allTeams.push(team);
+      allTeams = [...allTeams, team]; // Spread syntax
+      //1.2 apelam displayTeams(allTeams)
+      displayTeams(allTeams);
+      // 2. sterge datele din inputuri
+      // varianta 1
+      // writeTeam({promotion: "",name: "",url: "",members: ""});
+      //  varianta 2
+      e.target.reset();
+    }
   }
 }
 
