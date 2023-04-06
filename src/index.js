@@ -1,5 +1,5 @@
 import { loadTeamsRequest, createTeamRequest, deleteTeamRequest, updateTeamRequest } from "./request";
-import { sleep } from "./utilities";
+import { $, sleep } from "./utilities";
 // const utilities = require('./utilities');
 
 let allTeams = [];
@@ -104,14 +104,27 @@ function prepareEdit(id) {
 
   writeTeam(team);
 }
+function searchTeams(search) {
+  return allTeams.filter(team => {
+    return team.promotion.indexOf(search) >= 0;
+  });
+}
 
 function initEvents() {
-  const form = document.getElementById("editForm");
+  const form = $("#editForm");
   form.addEventListener("submit", onSubmit);
   form.addEventListener("reset", () => {
     editId = undefined;
   });
-  document.querySelector("#teams tbody").addEventListener("click", async e => {
+
+  $("#search").addEventListener("input", e => {
+    const teams = searchTeams(e.target.value);
+
+    displayTeams(teams);
+    console.log("search");
+  });
+
+  $("#teams tbody").addEventListener("click", async e => {
     if (e.target.matches("a.removeBtn")) {
       const id = e.target.dataset.id;
 
