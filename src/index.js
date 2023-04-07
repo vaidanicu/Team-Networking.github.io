@@ -1,6 +1,6 @@
-import debounce from "lodash/debounce";
+// import debounce from "lodash/debounce";
 import { loadTeamsRequest, createTeamRequest, deleteTeamRequest, updateTeamRequest } from "./request";
-import { $, sleep } from "./utilities";
+import { debounce, $, sleep } from "./utilities";
 // const utilities = require('./utilities');
 
 let allTeams = [];
@@ -120,11 +120,10 @@ function initEvents() {
 
   $("#search").addEventListener(
     "input",
-    debounce(e => {
+    debounce(function (e) {
       const teams = searchTeams(e.target.value);
-
       displayTeams(teams);
-      console.log("search");
+      console.warn("search", e, this, this === e.target);
     }, 300)
   );
 
@@ -146,14 +145,14 @@ function initEvents() {
 loadTeams();
 initEvents();
 // TODO move in external file
-console.info("sleep");
-sleep(1000).then(r => {
-  console.info("done1", r);
-});
-console.warn("after sleep");
+// console.info("sleep");
+// sleep(1000).then(r => {
+//   console.info("done1", r);
+// });
+// console.warn("after sleep");
 
-(async () => {
-  console.info("start");
-  var r2 = await sleep(5000);
-  console.warn("done2", r2);
-})();
+// (async () => {
+//   console.info("start");
+//   var r2 = await sleep(5000);
+//   console.warn("done2", r2);
+// })();
