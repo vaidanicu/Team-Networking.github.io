@@ -11,20 +11,19 @@ export function $(selector) {
 }
 
 export function debounce(fn, ms) {
-  let timer; // closure
-  // console.log("debounce", fn, ms);
-
-  return function (e) {
+  let timer; //closure
+  return function () {
+    // console.log("debounce", fn, ms);
     console.warn("inner fn", this);
     var context = this;
+    var args = arguments;
     clearTimeout(timer);
-
     timer = setTimeout(function () {
       console.log("timeout", this);
       // fn(e); // callback
       // fn.call(this, e); /// doar cu arowfunction
       // fn.apply(this, arguments); /// doar cu arowfunction
-      fn.apply(context, args); // cu function
-    }, ms);
+      fn.apply(context, args);
+    });
   };
 }
