@@ -8,10 +8,10 @@ let editId;
 
 function readTeam() {
   return {
-    promotion: document.getElementById("promotion").value,
-    members: document.getElementById("members").value,
-    name: document.getElementById("name").value,
-    url: document.getElementById("url").value
+    promotion: $("#promotion").value,
+    members: $("#members").value,
+    name: $("#name").value,
+    url: $("#url").value
   };
 }
 
@@ -56,7 +56,7 @@ function displayTeams(teams) {
   // console.timeEnd("display");
 }
 function loadTeams() {
-  loadTeamsRequest().then(teams => {
+  return loadTeamsRequest().then(teams => {
     allTeams = teams;
     console.info(teams);
     displayTeams(teams);
@@ -142,7 +142,11 @@ function initEvents() {
     }
   });
 }
-loadTeams();
+$("#editForm").classList.add("loading-mask");
+loadTeams().then(async () => {
+  await sleep(200);
+  $("#editForm").classList.remove("loading-mask");
+});
 initEvents();
 // TODO move in external file
 // console.info("sleep");
